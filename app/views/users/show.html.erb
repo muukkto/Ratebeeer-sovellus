@@ -6,6 +6,9 @@
     <% if @user.ratings.empty? %>
     <% else %>
       Has made <%= pluralize(@user.ratings.size, "rating") %>, average rating <%= @user.average_rating%>
+      <br>Favorite beer: <%= @user.favorite_beer.name %>
+      <br>Favorite brewery: <%= @user.favorite_brewery %>
+      <br>Favorite style: <%= @user.favorite_style %>
     <% end %>
 </p>
 
