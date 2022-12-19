@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-def create_beer_with_rating(object, score, style = "Lager", brewery = FactoryBot.create(:brewery))
+def create_beer_with_rating(object, score, style = FactoryBot.create(:style), brewery = FactoryBot.create(:brewery))
   beer = FactoryBot.create(:beer, style: style, brewery: brewery)
   FactoryBot.create(:rating, beer: beer, score: score, user: object[:user] )
   beer
@@ -102,11 +102,11 @@ RSpec.describe User, type: :model do
     end
 
     it "is the one with highest rating if several rated" do
-      ipa_1 = create_beer_with_rating({ user: user}, 25, "IPA")
-      ipa_2 = create_beer_with_rating({ user: user}, 20, "IPA")
+      ipa_1 = create_beer_with_rating({ user: user}, 25, FactoryBot.create(:style, name: "IPA"))
+      ipa_2 = create_beer_with_rating({ user: user}, 20, FactoryBot.create(:style, name: "IPA"))
       create_beers_with_many_ratings({user: user}, 10, 20, 15, 7, 9)
 
-      expect(user.favorite_style).to eq("IPA")
+      expect(user.favorite_style.name).to eq("IPA")
     end
   end
 
@@ -130,8 +130,8 @@ RSpec.describe User, type: :model do
 
     it "is the one with highest rating if several rated" do
       koff_p = FactoryBot.create(:brewery, name: "Koff")
-      koff_1 = create_beer_with_rating({ user: user}, 25, "IPA", koff_p)
-      koff_2 = create_beer_with_rating({ user: user}, 20, "IPA", koff_p)
+      koff_1 = create_beer_with_rating({ user: user}, 25, FactoryBot.create(:style, name: "IPA"), koff_p)
+      koff_2 = create_beer_with_rating({ user: user}, 20, FactoryBot.create(:style, name: "IPA"), koff_p)
       create_beers_with_many_ratings({user: user}, 10, 20, 15, 7, 9)
     
       expect(user.favorite_brewery).to eq("Koff")

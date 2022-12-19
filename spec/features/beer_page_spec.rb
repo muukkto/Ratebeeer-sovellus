@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Beer" do
     let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
+    let!(:style) { FactoryBot.create :style, name: "IPA" }
 
     let!(:user) { FactoryBot.create :user}
   
@@ -13,8 +14,9 @@ describe "Beer" do
         visit new_beer_path
 
         fill_in('beer[name]', with: 'IPA olut')
-        select('IPA', from: 'beer[style]')
+        select('IPA', from: 'beer[style_id]')
         select('Koff', from: 'beer[brewery_id]')
+
 
         expect{
             click_button "Create Beer"
@@ -25,7 +27,7 @@ describe "Beer" do
     it "can't be added without name" do
         visit new_beer_path
 
-        select('IPA', from: 'beer[style]')
+        select('IPA', from: 'beer[style_id]')
         select('Koff', from: 'beer[brewery_id]')
 
         expect{

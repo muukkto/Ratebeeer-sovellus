@@ -24,7 +24,7 @@ class User < ApplicationRecord
   def favorite_style
     return nil if ratings.empty?
 
-    styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Lowalcohol"]
+    styles = Style.all
     a = styles.to_h { |x| [x, [0]] }
 
     ratings.each do |rating|

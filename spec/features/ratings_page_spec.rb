@@ -65,7 +65,7 @@ describe "Rating" do
 
         expect(page).to have_content "Favorite beer: #{rating1.beer.name}"
         expect(page).to have_content "Favorite brewery: #{rating1.beer.brewery.name}"
-        expect(page).to have_content "Favorite style: #{rating1.beer.style}"
+        expect(page).to have_content "Favorite style: #{rating1.beer.style.name}"
     end
   end
 end

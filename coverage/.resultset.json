@@ -43,10 +43,10 @@
           1,
           1,
           1,
-          null,
           1,
           null,
           1,
+          null,
           1,
           null,
           1,
@@ -108,13 +108,13 @@
           9,
           null,
           7,
-          49,
+          30,
           null,
           7,
           16,
           null,
           null,
-          49,
+          30,
           null,
           null,
           1,
@@ -167,6 +167,13 @@
           null
         ]
       },
+      "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/app/models/style.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/app/controllers/sessions_controller.rb": {
         "lines": [
           1,
@@ -204,7 +211,7 @@
           null,
           null,
           1,
-          164,
+          176,
           null,
           125,
           null,
@@ -333,6 +340,8 @@
           null,
           null,
           1,
+          0,
+          0,
           null,
           null,
           1,
@@ -477,6 +486,103 @@
           null
         ]
       },
+      "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/lib/beermapping_api.rb": {
+        "lines": [
+          1,
+          1,
+          9,
+          15,
+          null,
+          null,
+          1,
+          6,
+          null,
+          6,
+          6,
+          null,
+          6,
+          null,
+          4,
+          4,
+          8,
+          null,
+          null,
+          null,
+          1,
+          6,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/app/models/place.rb": {
+        "lines": [
+          1,
+          1,
+          6,
+          null,
+          null,
+          null
+        ]
+      },
+      "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/lib/weather_api.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/app/controllers/places_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          3,
+          3,
+          3,
+          null,
+          3,
+          3,
+          1,
+          null,
+          2,
+          null,
+          null,
+          null
+        ]
+      },
       "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/app/controllers/ratings_controller.rb": {
         "lines": [
           1,
@@ -540,6 +646,9 @@
           0,
           null,
           null,
+          0,
+          0,
+          0,
           0,
           0,
           null,
@@ -684,6 +793,20 @@
         "branches": {
         }
       },
+      "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/app/controllers/styles_controller.rb": {
+        "lines": [
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
       "/home/ad/lxhome/m/muto/Linux/TKT/Web-palevlinohjelmointi/ratebeer/app/jobs/application_job.rb": {
         "lines": [
           0,
@@ -708,6 +831,6 @@
         }
       }
     },
-    "timestamp": 1670954677
+    "timestamp": 1671479639
   }
 }
