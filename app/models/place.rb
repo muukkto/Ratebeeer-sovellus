@@ -3,4 +3,3 @@ class Place < OpenStruct
     [:id, :name, :status, :street, :city, :zip, :country, :overall]
   end
 end
-
