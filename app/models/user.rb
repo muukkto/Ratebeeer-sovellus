@@ -45,5 +45,4 @@ class User < ApplicationRecord
     sorted_by_rating_number_in_desc_order = User.all.sort_by{ |b| -b.ratings.count }
     sorted_by_rating_number_in_desc_order.take(n)
   end
-
 end
