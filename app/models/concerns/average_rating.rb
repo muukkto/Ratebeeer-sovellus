@@ -1,7 +1,7 @@
 module AverageRating
   extend ActiveSupport::Concern
+
   def average_rating
-    pisteet = ratings.map(&:score)
-    pisteet.sum(0.0) / pisteet.size
+    ratings.average(:score).to_f
   end
 end

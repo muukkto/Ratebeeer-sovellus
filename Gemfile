@@ -13,6 +13,10 @@ gem "sprockets-rails"
 
 gem 'httparty'
 
+gem 'bootstrap', '~> 5.2.0'
+gem 'jquery-rails'
+gem 'mini_racer'
+
 # Use sqlite3 as the database for Active Record
 
 group :development, :test do

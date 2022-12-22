@@ -20,7 +20,7 @@ describe "Rating" do
     fill_in('rating[score]', with: '15')
 
     expect{
-      click_button "Create Rating"
+      click_button "Add rating"
     }.to change{Rating.count}.from(0).to(1)
 
     expect(user.ratings.count).to eq(1)
@@ -37,7 +37,6 @@ describe "Rating" do
 
         visit ratings_path
 
-        expect(page).to have_content "Number of ratings: 3"
         expect(page).to have_content rating1.beer.name
         expect(page).to have_content rating2.beer.name
         expect(page).to have_content rating3.beer.name

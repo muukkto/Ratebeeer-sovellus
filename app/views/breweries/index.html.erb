@@ -1,25 +1,36 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Breweries</h1>
 
-<p>Number of breweries: <%= @breweries.count %></p>
-<p><%= link_to 'List of beers', beers_path %></p>
+<p>Number of active breweries: <%= @active_breweries.count %></p>
+<p>Number of retired breweries: <%= @retired_breweries.count %></p>
 
 <div id="breweries">
-  <% @breweries.each do |brewery| %>
-    <div id="<%= dom_id brewery %>">
-      <p>
-        <%= link_to brewery.name, brewery %>
-      </p>
-    
-      <p>
-        <strong>Year:</strong>
-        <%= brewery.year %>
-      </p>
-    
-    </div>
-  <% end %>
+  <table class="table table-hover">
+    <tr>
+      <th>Brewery</th>
+      <th>Year</th>
+      <th>Number of beers</th>
+      <th>Rating</th>
+    </tr>
+    <tr><th colspan="4">Active breweries</th></tr>
+    <% @active_breweries.each do |brewery| %>
+      <tr>
+        <td><%= link_to brewery.name, brewery %></td>
+        <td><%= brewery.year %></td>
+        <td><%= brewery.beers.count %></td>
+        <td><%= brewery.average_rating %></td>
+      </tr>
+    <% end %>
+    <tr><th colspan="4">Retired breweries</th></tr>
+    <% @retired_breweries.each do |brewery| %>
+      <tr>
+        <td><%= link_to brewery.name, brewery %></td>
+        <td><%= brewery.year %></td>
+        <td><%= brewery.beers.count %></td>
+        <td><%= round(brewery.average_rating) %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
-<%= link_to "New brewery", new_brewery_path if current_user %>
+<%= link_to "New brewery", new_brewery_path, class:'btn btn-primary' if current_user %>
 

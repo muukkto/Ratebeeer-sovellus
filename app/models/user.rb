@@ -21,28 +21,29 @@ class User < ApplicationRecord
     ratings.order(score: :desc).limit(1).first.beer
   end
 
+  def favorite_by(my_ratings, criteria)
+    by_criteria = my_ratings
+                  .group_by { |rating| rating.beer.send(criteria) }
+                  .map { |key, val| [key, val.sum(&:score) / val.size] }
+
+    by_criteria.max_by(&:last).first
+  end
+
   def favorite_style
     return nil if ratings.empty?
 
-    styles = Style.all
-    a = styles.to_h { |x| [x, [0]] }
-
-    ratings.each do |rating|
-      a[rating.beer.style].insert(-1, rating.score)
-    end
-
-    a.max_by{ |_t, b| b.sum(0.0) / b.size }[0]
+    favorite_by(ratings, :style)
   end
 
   def favorite_brewery
     return nil if ratings.empty?
 
-    breweries = Brewery.all
-    a = breweries.to_h { |x| [x, [0]] }
-    ratings.each do |rating|
-      a[rating.beer.brewery].insert(-1, rating.score)
-    end
-
-    a.max_by{ |_t, b| b.sum(0.0) / b.size }[0].name
+    favorite_by(ratings, :brewery)
   end
+
+  def self.top(n)
+    sorted_by_rating_number_in_desc_order = User.all.sort_by{ |b| -b.ratings.count }
+    sorted_by_rating_number_in_desc_order.take(n)
+  end
+
 end

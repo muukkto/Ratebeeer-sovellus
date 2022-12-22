@@ -3,5 +3,8 @@
     <strong>Username:</strong>
     <%= user.username %>
   </p>
+  <% if user.blocked  %>
+    <span class="badge bg-secondary">blocked</span>
+  <% end %>
 
 </div>

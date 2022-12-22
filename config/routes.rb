@@ -3,10 +3,18 @@ Rails.application.routes.draw do
   resources :beer_clubs
   resources :users
   resources :beers
-  resources :styles, only: [:index]
   resources :breweries
   resource :session, only: [:new, :create, :destroy]
   resources :places, only: [:index, :show]
+  resources :styles
+
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
+
+  resources :users do
+    post 'block_user', on: :member
+  end
 
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'

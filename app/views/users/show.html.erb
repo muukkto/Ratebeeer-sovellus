@@ -1,5 +1,3 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @user %>
 
 <p>
@@ -12,6 +10,14 @@
     <% end %>
 </p>
 
+<% if not current_user.nil? %>
+<% if @user.blocked %>
+<%= link_to "Open account", block_user_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-danger" if current_user.admin %>
+<% else %>
+<%= link_to "Block user", block_user_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-danger" if current_user.admin %>
+<% end %>
+<% end %>
+
 <h3>member of</h3>
 <ul>
   <% @user.beer_clubs.each do |beer_club| %>
@@ -22,7 +28,7 @@
 <h3>ratings</h3>
 <ul>
   <% @user.ratings.each do |rating| %>
-    <li><%= "#{rating.to_s}" %>
+    <li><%= rating.beer.name + " " + rating.beer.style.name + " " + rating.score.to_s %>
       <% if @user == current_user %>
         <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
       <% end %>
@@ -30,11 +36,8 @@
   <% end %>
 </ul>
 
-
-
 <div>
   <%= link_to "Back to users", users_path %>
-
   <% if @user == current_user %>
   | <%= link_to "Edit this user", edit_user_path(@user) %>
     <%= button_to "Destroy this user", @user, method: :delete %>
