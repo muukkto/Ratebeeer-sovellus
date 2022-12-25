@@ -20,27 +20,43 @@
 
 <h3>member of</h3>
 <ul>
-  <% @user.beer_clubs.each do |beer_club| %>
-  <li><%= link_to beer_club.name, beer_club %></li>
+  <% @user.memberships.confirmed.each do |membership| %>
+  <li><%= link_to membership.beer_club.name, membership.beer_club%>
+  <% end %>
+</ul>
+
+<h3>applied membership of</h3>
+<ul>
+  <% @user.memberships.applicant.each do |membership| %>
+  <li><%= link_to membership.beer_club.name, membership.beer_club%>
   <% end %>
 </ul>
 
 <h3>ratings</h3>
-<ul>
-  <% @user.ratings.each do |rating| %>
-    <li><%= rating.beer.name + " " + rating.beer.style.name + " " + rating.score.to_s %>
-      <% if @user == current_user %>
-        <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div id="user_ratings_list">
+  <table class="table table-hover">
+    <tr>
+      <th>Beer</th>
+      <th>Brewery</th>
+      <th>Score</th>
+      <th></th>
+    </tr>
+    <% @user.ratings.each do |rating| %>
+      <tr>
+        <td><%= link_to rating.beer.name, rating.beer %></td>
+        <td><%= link_to rating.beer.brewery.name, rating.beer.brewery %></td>
+        <td><%= rating.score %></td>
+        <td><%= link_to "Delete", rating, data: {turbo_method: :delete}, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 <div>
-  <%= link_to "Back to users", users_path %>
   <% if @user == current_user %>
-  | <%= link_to "Edit this user", edit_user_path(@user) %>
-    <%= button_to "Destroy this user", @user, method: :delete %>
+    <%= link_to "Edit this user", edit_user_path(@user), class:'btn btn-primary' %>
+    <%= button_to "Destroy this user", @user, method: :delete, class: "btn btn-danger" %>
   <% end %>
+  <%= link_to "Back to users", users_path %>
 </div>
 

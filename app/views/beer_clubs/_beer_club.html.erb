@@ -1,8 +1,7 @@
 <div id="<%= dom_id beer_club %>">
-  <p>
-    <strong>Name:</strong>
+  <h2>
     <%= beer_club.name %>
-  </p>
+  </h2>
 
   <p>
     <strong>Founded:</strong>
@@ -14,12 +13,20 @@
     <%= beer_club.city %>
   </p>
 
-  <h3>members</h3>
+  <h4>members</h4>
 
-  <p>
-  <% beer_club.users.each do |user| %>
-  <%= link_to user.username, user %>
+  <% @confirmed_members.each do |membership| %>
+    <p>
+      <%= link_to membership.user.username, membership.user %>
+    </p>
   <% end %>
-  </p>
+
+  <h4>membership applications</h4>
+
+  <% @applicants.each do |membership| %>
+    <p>
+      <%= link_to membership.user.username, membership.user %> <%= link_to "Confirm", confirm_membership_path(membership.id), data: {turbo_method: "post"}, class: "btn btn-primary" if current_user.memberships.confirmed.find_by(beer_club: beer_club.id) %>
+    </p>
+  <% end %>
 
 </div>

@@ -17,6 +17,8 @@ gem 'bootstrap', '~> 5.2.0'
 gem 'jquery-rails'
 gem 'mini_racer'
 
+gem 'rack-mini-profiler'
+
 # Use sqlite3 as the database for Active Record
 
 group :development, :test do

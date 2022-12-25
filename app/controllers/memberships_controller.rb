@@ -23,6 +23,7 @@ class MembershipsController < ApplicationController
   # POST /memberships or /memberships.json
   def create
     @membership = Membership.new(membership_params)
+    @membership.confirmed = false
 
     respond_to do |format|
       if @membership.save
@@ -56,6 +57,13 @@ class MembershipsController < ApplicationController
       format.html { redirect_to @membership.user, notice: "Membership in #{@membership.beer_club.name} ended." }
       format.json { head :no_content }
     end
+  end
+
+  def confirm
+    membership = Membership.find(params[:id])
+    membership.update_attribute :confirmed, true
+
+    redirect_to membership.beer_club, notice: "#{membership.user.username} has been confirmed"
   end
 
   private

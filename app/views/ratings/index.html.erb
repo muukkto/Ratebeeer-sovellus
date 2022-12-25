@@ -1,5 +1,6 @@
 <h1>Ratings</h1>
 
+<% cache 'ratings_page', expires_in:5.minutes do %>
 <div class="container text-center">
   <div class="row">
     <div class="col">
@@ -30,5 +31,6 @@
    <li> <%= render rating %> </li>
  <% end %>
 </ul>
+<% end %>
 
 <%= link_to "New rating", new_rating_path, class:'btn btn-primary' %>

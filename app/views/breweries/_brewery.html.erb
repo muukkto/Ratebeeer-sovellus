@@ -1,3 +1,5 @@
+<% cache brewery do %>
+
 <div id="<%= dom_id brewery %>">
    <h2>
     <%= brewery.name %>
@@ -7,12 +9,24 @@
   </h2>
   <p><i>Established in <%= brewery.year %></i></p>
   <p>Beer count: <%=@brewery.beers.count %></p>
-  
-  <p>
- <% brewery.beers.each do |beer| %>
-   <%= link_to beer.name, beer %>
- <% end %>
- </p>
+
+<h3>Beers</h3>  
+<div>
+  <table class="table table-hover">
+    <tr>
+      <th>Name</th>
+      <th>Style</th>
+      <th>Rating</th>
+    </tr>
+    <% brewery.beers.each do |beer| %>
+      <tr>
+        <td><%= link_to beer.name, beer %></td>
+        <td><%= link_to beer.style.name, beer.style %></td>
+        <td><%= beer.average_rating %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
  <p>
     <% if brewery.ratings.empty? %>
@@ -22,3 +36,5 @@
   </p>
 
 </div>
+
+<% end %>

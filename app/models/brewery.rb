@@ -3,6 +3,7 @@ class Brewery < ApplicationRecord
   has_many :ratings, through: :beers
 
   include AverageRating
+  extend TopList
 
   validates :name, presence: true
   validate :year_cannot_be_in_the_future, on: :create
@@ -31,10 +32,5 @@ class Brewery < ApplicationRecord
 
   def to_s
     name
-  end
-
-  def self.top(n)
-    sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -b.average_rating }
-    sorted_by_rating_in_desc_order.take(n)
   end
 end

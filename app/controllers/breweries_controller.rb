@@ -1,9 +1,13 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: %i[show edit update destroy]
   before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :expire, only: %i[update destroy create toggle_activity]
 
   # GET /breweries or /breweries.json
   def index
+    return if request.format.html? && fragment_exist?("brewerylist")
+
+    @breweries = Brewery.all
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
   end
@@ -47,6 +51,10 @@ class BreweriesController < ApplicationController
         format.json { render json: @brewery.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def expire
+    expire_fragment('brewerylist')
   end
 
   # DELETE /breweries/1 or /breweries/1.json

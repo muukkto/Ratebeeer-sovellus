@@ -3,11 +3,18 @@
 <h1>Styles</h1>
 
 <div id="styles">
-  <% @styles.each do |style| %>
-    <p>
-      <%= link_to style.name, style %>
-    </p>
-  <% end %>
+  <table class="table table-hover">
+    <tr>
+      <th>Name</th>
+      <th>Number of beers</th>
+    </tr>
+    <% @styles.each do |style| %>
+      <tr>
+        <td><%= link_to style.name, style %></td>
+        <td><%= style.beers.count %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
 <%= link_to "New style", new_style_path %>
